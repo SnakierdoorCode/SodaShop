@@ -69,6 +69,12 @@
         .fav-btn svg { fill: #ddd; width: 28px; height: 28px; transition: 0.2s; }
         .fav-btn.active svg { fill: var(--primary); }
 
+        /* Game Drawer (The Player) */
+        #drawer { position: fixed; bottom: -100%; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; flex-direction: column; transition: bottom 0.6s cubic-bezier(0.85, 0, 0.15, 1); }
+        #drawer.active { bottom: 0; }
+        .drawer-bar { background: #111; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--primary); }
+
+        /* Settings UI */
         #settings-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(5px); }
         .island { background: #f0f0f0; width: 550px; max-height: 90vh; border: 5px solid #000; display: flex; flex-direction: column; color: #000; box-shadow: 20px 20px 0px rgba(0,0,0,0.5); }
         .island-header { background: #000; color: #fff; padding: 15px; display: flex; justify-content: space-between; font-family: 'Press Start 2P'; font-size: 10px; }
@@ -78,10 +84,6 @@
         select, input[type="text"], textarea { width: 100%; padding: 10px; margin: 5px 0; border: 3px solid #000; font-family: 'Inter'; font-weight: 700; box-sizing: border-box; }
         .col-row { display: flex; align-items: center; justify-content: space-between; margin: 8px 0; font-size: 13px; font-weight: 800; }
         input[type="color"] { border: 3px solid #000; width: 60px; height: 35px; cursor: pointer; padding: 0; background: none; }
-
-        #drawer { position: fixed; bottom: -100%; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; flex-direction: column; transition: bottom 0.6s cubic-bezier(0.85, 0, 0.15, 1); }
-        #drawer.active { bottom: 0; }
-        .drawer-bar { background: #111; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--primary); }
     </style>
 </head>
 <body>
@@ -121,11 +123,6 @@
                 </select>
             </div>
             <div class="s-group">
-                <span class="s-title">Theme Customizer</span>
-                <div class="col-row">Primary Color <input type="color" onchange="updateVar('--primary', this.value)"></div>
-                <div class="col-row">Background Color <input type="color" onchange="updateVar('--bg', this.value)"></div>
-            </div>
-            <div class="s-group">
                 <span class="s-title">Tab Cloak</span>
                 <select onchange="cloak(this.value)">
                     <option value="none">None</option>
@@ -161,8 +158,10 @@
     const zoneViewer = document.getElementById('drawer');
     const zoneFrame = document.getElementById('zoneFrame');
     
-    const zonesURL = "https://cdn.jsdelivr.net/gh/SnakierdoorCode/SodaShop@main/database.json";
-    const baseURL = "https://cdn.jsdelivr.net/gh/SnakierdoorCode/SodaShop@latest";
+    // REPO CONFIG
+    const databaseURL = "https://cdn.jsdelivr.net/gh/SnakierdoorCode/SodaShop@main/database.json";
+    const coverBase = "https://cdn.jsdelivr.net/gh/SnakierdoorCode/SodaShop@latest";
+    const gameBase = "https://snakierdoorcode.github.io/youtube-playables";
     
     let zones = [];
     let favs = JSON.parse(localStorage.getItem('ss_favs')) || [];
@@ -171,20 +170,19 @@
 
     async function listZones() {
         try {
-            const response = await fetch(zonesURL + "?t=" + Date.now());
-            if (!response.ok) throw new Error("HTTP " + response.status);
+            const response = await fetch(databaseURL + "?t=" + Date.now());
+            if (!response.ok) throw new Error("Database Load Error");
             zones = await response.json();
             displayZones(zones);
 
-            // URL PARAMETER CHECK (The ?id=0 trick)
-            const urlParams = new URLSearchParams(window.location.search);
-            const gameId = urlParams.get('id');
-            if (gameId !== null) {
-                const target = zones.find(z => z.id == gameId);
+            // URL PARSER (Check for ?id=0)
+            const params = new URLSearchParams(window.location.search);
+            const autoId = params.get('id');
+            if (autoId !== null) {
+                const target = zones.find(z => z.id == autoId);
                 if (target) openZone(target);
             }
-
-        } catch (e) { console.error("Database error:", e); }
+        } catch (e) { console.error(e); }
     }
 
     function displayZones(data) {
@@ -197,7 +195,7 @@
             card.className = "game-card";
             card.onclick = () => openZone(game);
             
-            const imgPath = game.cover.replace("{COVER_URL}", baseURL).replace("/covers", "");
+            const imgPath = game.cover.replace("{COVER_URL}", coverBase);
             
             card.innerHTML = `
                 <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(event, ${game.id})">
@@ -218,14 +216,24 @@
         document.getElementById('stat-count').innerText = playCount;
         document.getElementById('zoneName').innerText = "NOW SERVING: " + game.name;
         
-        let finalUrl = game.url.replace("{HTML_URL}", baseURL).replace("/games", "");
+        // --- SMART PATH LOGIC ---
+        let finalUrl = game.url.replace("{HTML_URL}", gameBase);
         
-        // Update URL address bar without refreshing
+        // If the URL ends in a folder name (no .html), add /index.html automatically
+        if (!finalUrl.includes(".html") && !finalUrl.includes(".htm")) {
+            // Ensure we don't double up on slashes
+            if (!finalUrl.endsWith('/')) finalUrl += '/';
+            finalUrl += "index.html";
+        }
+        // -------------------------
+
+        // Sync browser address bar
         window.history.pushState({}, '', `?id=${game.id}`);
 
         if (game.url.startsWith("http") && !game.url.includes("{HTML_URL}")) {
             window.open(game.url, "_blank");
         } else {
+            console.log("Dispensing Soda From:", finalUrl);
             zoneFrame.src = finalUrl;
             zoneViewer.classList.add('active');
         }
@@ -233,7 +241,6 @@
 
     function closeZone() {
         zoneViewer.classList.remove('active');
-        // Remove the ?id= from the URL
         window.history.pushState({}, '', window.location.pathname);
         setTimeout(() => { zoneFrame.src = ""; }, 600);
     }
