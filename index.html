@@ -44,7 +44,6 @@
             z-index: -1;
         }
 
-        /* --- HEADER --- */
         header {
             background-color: var(--primary);
             padding: 15px 40px; 
@@ -53,132 +52,43 @@
             border-bottom: 5px solid #000;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        .logo { 
-            font-family: 'Press Start 2P', cursive; 
-            font-size: 22px; 
-            text-shadow: 3px 3px 0px #000; 
-            color: white; 
-            letter-spacing: -1px;
-        }
+        .logo { font-family: 'Press Start 2P', cursive; font-size: 22px; text-shadow: 3px 3px 0px #000; color: white; letter-spacing: -1px; }
+        .search-container input { width: 300px; padding: 12px; border: 3px solid #000; font-family: 'Inter'; font-weight: 900; outline: none; box-shadow: 4px 4px 0px #000; }
+        .btn-retro { background: white; border: 3px solid #000; padding: 10px 15px; cursor: pointer; font-weight: bold; box-shadow: 4px 4px 0px #000; transition: 0.1s; font-family: 'Inter'; }
+        .btn-retro:active { transform: translate(3px, 3px); box-shadow: 0px 0px 0px #000; }
 
-        .search-container input {
-            width: 300px; padding: 12px; border: 3px solid #000; 
-            font-family: 'Inter'; font-weight: 900;
-            outline: none;
-            box-shadow: 4px 4px 0px #000;
-        }
-
-        .btn-retro {
-            background: white;
-            border: 3px solid #000;
-            padding: 10px 15px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 4px 4px 0px #000;
-            transition: 0.1s;
-            font-family: 'Inter';
-        }
-        .btn-retro:active {
-            transform: translate(3px, 3px);
-            box-shadow: 0px 0px 0px #000;
-        }
-
-        /* --- SECTIONS --- */
-        .section-header {
-            font-family: 'Press Start 2P';
-            font-size: 14px;
-            margin: 40px 40px 10px 40px;
-            padding-left: 10px;
-            border-left: 8px solid var(--primary);
-            color: white;
-            text-transform: uppercase;
-        }
-
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(var(--card-size), 1fr)); 
-            gap: 35px; 
-            padding: 20px 40px 40px 40px; 
-        }
+        .section-header { font-family: 'Press Start 2P'; font-size: 14px; margin: 40px 40px 10px 40px; padding-left: 10px; border-left: 8px solid var(--primary); color: white; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--card-size), 1fr)); gap: 35px; padding: 20px 40px 40px 40px; }
         
-        .game-card {
-            background: var(--card-bg); 
-            border: 4px solid #000; 
-            padding: 10px 10px 45px 10px;
-            position: relative; 
-            transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
-            box-shadow: 10px 10px 0px #000;
-            cursor: pointer;
-        }
+        .game-card { background: var(--card-bg); border: 4px solid #000; padding: 10px 10px 45px 10px; position: relative; transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 10px 10px 0px #000; cursor: pointer; }
         .game-card:hover { transform: rotate(-2deg) scale(1.05); z-index: 10; }
         .game-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border: 3px solid #000; }
-        
-        .game-name { 
-            position: absolute; bottom: 12px; left: 0; width: 100%; 
-            color: #000; font-family: 'Press Start 2P'; font-size: 9px; text-align: center;
-        }
+        .game-name { position: absolute; bottom: 12px; left: 0; width: 100%; color: #000; font-family: 'Press Start 2P'; font-size: 9px; text-align: center; }
 
-        .fav-btn {
-            position: absolute; top: -15px; right: -15px; background: white;
-            border: 4px solid #000; border-radius: 50%; width: 50px; height: 50px; 
-            cursor: pointer; z-index: 50; display: flex; align-items: center; justify-content: center;
-            box-shadow: 4px 4px 0px #000;
-        }
+        .fav-btn { position: absolute; top: -15px; right: -15px; background: white; border: 4px solid #000; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; z-index: 50; display: flex; align-items: center; justify-content: center; box-shadow: 4px 4px 0px #000; }
         .fav-btn svg { fill: #ddd; width: 28px; height: 28px; transition: 0.2s; }
         .fav-btn.active svg { fill: var(--primary); }
 
-        /* --- SETTINGS MODAL --- */
-        #settings-modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.8);
-            display: none; justify-content: center; align-items: center; z-index: 2000;
-            backdrop-filter: blur(5px);
-        }
-        .island {
-            background: #f0f0f0; width: 550px; max-height: 90vh; border: 5px solid #000;
-            display: flex; flex-direction: column; color: #000; box-shadow: 20px 20px 0px rgba(0,0,0,0.5);
-        }
+        #settings-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(5px); }
+        .island { background: #f0f0f0; width: 550px; max-height: 90vh; border: 5px solid #000; display: flex; flex-direction: column; color: #000; box-shadow: 20px 20px 0px rgba(0,0,0,0.5); }
         .island-header { background: #000; color: #fff; padding: 15px; display: flex; justify-content: space-between; font-family: 'Press Start 2P'; font-size: 10px; }
         .island-body { padding: 25px; overflow-y: auto; }
-
         .s-group { margin-bottom: 30px; border-bottom: 2px solid #ccc; padding-bottom: 20px; }
         .s-title { font-family: 'Press Start 2P'; font-size: 11px; margin-bottom: 12px; display: block; color: var(--primary); text-decoration: underline; }
-        
-        select, input[type="text"], textarea {
-            width: 100%; padding: 10px; margin: 5px 0; border: 3px solid #000; font-family: 'Inter'; font-weight: 700; box-sizing: border-box;
-        }
-
+        select, input[type="text"], textarea { width: 100%; padding: 10px; margin: 5px 0; border: 3px solid #000; font-family: 'Inter'; font-weight: 700; box-sizing: border-box; }
         .col-row { display: flex; align-items: center; justify-content: space-between; margin: 8px 0; font-size: 13px; font-weight: 800; }
         input[type="color"] { border: 3px solid #000; width: 60px; height: 35px; cursor: pointer; padding: 0; background: none; }
 
-        /* --- DRAWER (ANIMATED) --- */
-        #drawer { 
-            position: fixed; 
-            bottom: -100%; 
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #000; 
-            z-index: 10000; 
-            display: flex; 
-            flex-direction: column; 
-            transition: bottom 0.6s cubic-bezier(0.85, 0, 0.15, 1);
-        }
+        #drawer { position: fixed; bottom: -100%; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; flex-direction: column; transition: bottom 0.6s cubic-bezier(0.85, 0, 0.15, 1); }
         #drawer.active { bottom: 0; }
-        .drawer-bar { 
-            background: #111; 
-            padding: 10px 20px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 4px solid var(--primary); 
-        }
+        .drawer-bar { background: #111; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--primary); }
     </style>
 </head>
 <body>
 
 <header>
     <div class="logo">SODASHOP</div>
-    <div class="search-container"><input type="text" id="search" placeholder="SEARCH FLAVORS..." onkeyup="searchGames()"></div>
+    <div class="search-container"><input type="text" id="search" placeholder="SEARCH FLAVORS..." onkeyup="filterZones()"></div>
     <div style="display:flex; gap:15px;">
         <button class="btn-retro" onclick="location.reload()">↻</button>
         <button class="btn-retro" onclick="toggleSettings(true)">⚙ SETTINGS</button>
@@ -192,17 +102,15 @@
 
 <div id="all-games-section">
     <div class="section-header">🥤 All Games</div>
-    <div id="master-grid" class="grid"></div>
+    <div id="container" class="grid"></div>
 </div>
 
 <div id="settings-modal">
     <div class="island">
         <div class="island-header"><span>SODA_CONFIG.EXE</span><span onclick="toggleSettings(false)" style="cursor:pointer;">[X]</span></div>
         <div class="island-body">
-            
             <div class="s-group">
                 <span class="s-title">Classic Theme</span>
-                <label>Preset Themes</label>
                 <select onchange="applyPreset(this.value)">
                     <option value="cherry">Default (Pink)</option>
                     <option value="ocean">Ocean Blue</option>
@@ -212,85 +120,25 @@
                     <option value="dark">Dark Mode</option>
                 </select>
             </div>
-
             <div class="s-group">
                 <span class="s-title">Theme Customizer</span>
-                <div class="col-row">Primary Color <input type="color" id="cp-primary" onchange="updateVar('--primary', this.value)"></div>
-                <div class="col-row">Background Color <input type="color" id="cp-bg" onchange="updateVar('--bg', this.value)"></div>
-                <div class="col-row">Card Background <input type="color" id="cp-card" onchange="updateVar('--card-bg', this.value)"></div>
-                <div class="col-row">Text Color <input type="color" id="cp-text" onchange="updateVar('--main-text', this.value)"></div>
-                <button class="btn-retro" style="width:100%; margin-top:10px;" onclick="location.reload()">Reset Colors</button>
+                <div class="col-row">Primary Color <input type="color" onchange="updateVar('--primary', this.value)"></div>
+                <div class="col-row">Background Color <input type="color" onchange="updateVar('--bg', this.value)"></div>
             </div>
-
-            <div class="s-group">
-                <span class="s-title">Custom CSS (Advanced)</span>
-                <textarea id="css-box" rows="3" placeholder="/* Enter custom CSS here... */"></textarea>
-                <button class="btn-retro" onclick="applyCSS()">Apply Custom CSS</button>
-            </div>
-
             <div class="s-group">
                 <span class="s-title">Tab Cloak</span>
-                <label>Cloak Site</label>
                 <select onchange="cloak(this.value)">
                     <option value="none">None</option>
                     <option value="classroom">Google Classroom</option>
                     <option value="clever">Clever</option>
-                    <option value="edpuzzle">Edpuzzle</option>
-                    <option value="ixl">IXL</option>
-                    <option value="gmail">Gmail</option>
-                    <option value="docs">Google Docs</option>
-                    <option value="slides">Google Slides</option>
-                    <option value="khan">Khan Academy</option>
-                    <option value="custom">Custom</option>
                 </select>
-                <div class="col-row" style="margin-top:10px;">Cloak Method
-                    <select id="cloak-method" style="width: 60%;">
-                        <option value="about:blank">about:blank</option>
-                        <option value="blob">blob:null</option>
-                    </select>
-                </div>
-                <button class="btn-retro" onclick="openAboutBlank()" style="width:100%; margin-top:5px;">Open Now</button>
-                <div class="col-row" style="margin-top:10px;">Auto Cloak
-                    <select id="auto-cloak" style="width: 60%;">
-                        <option value="disabled">Disabled</option>
-                        <option value="about:blank">about:blank</option>
-                        <option value="blob">blob:null</option>
-                    </select>
-                </div>
+                <button class="btn-retro" onclick="aboutBlank()" style="width:100%; margin-top:10px;">GHOST MODE (NEW TAB)</button>
             </div>
-
             <div class="s-group">
-                <span class="s-title">Additional Settings</span>
-                <div style="display:flex; gap:10px;">
-                    <button class="btn-retro" onclick="alert('Performance Mode: ON')">Performance Mode</button>
-                    <button class="btn-retro" onclick="alert('Anti-Close: ON')">Close Prevention Popup</button>
-                </div>
-                <label style="display:block; margin-top:15px;">Game Card Size</label>
-                <select onchange="updateVar('--card-size', this.value)">
-                    <option value="50px">Tiny (50px)</option>
-                    <option value="100px">Small (100px)</option>
-                    <option value="150px">Medium (150px)</option>
-                    <option value="200px" selected>Default (200px)</option>
-                    <option value="250px">Large (250px)</option>
-                    <option value="300px">Extra Large (300px)</option>
-                </select>
+                <span class="s-title">Stats</span>
+                <div class="col-row">Sessions: <span id="stat-count">0</span></div>
+                <div class="col-row">Uptime: <span id="stat-time">0h 00m</span></div>
             </div>
-
-            <div class="s-group">
-                <span class="s-title">Export/Import Save Data</span>
-                <div style="display:flex; gap:10px;">
-                    <button class="btn-retro" onclick="alert('Data Exported!')">Export</button>
-                    <button class="btn-retro" onclick="alert('Select File to Import')">Import</button>
-                </div>
-            </div>
-
-            <div class="s-group">
-                <span class="s-title">Your Stats</span>
-                <div class="col-row">Total Games Played: <span id="stat-count">0</span></div>
-                <div class="col-row">Most Played: <span id="stat-fav">None</span></div>
-                <div class="col-row">Time on Site: <span id="stat-time">0h 00m</span></div>
-            </div>
-
             <button class="btn-retro" style="width:100%" onclick="toggleSettings(false)">SAVE & CLOSE</button>
         </div>
     </div>
@@ -298,77 +146,95 @@
 
 <div id="drawer">
     <div class="drawer-bar">
-        <div id="active-title" style="font-family:'Press Start 2P'; font-size:10px; color:white;">NOW SERVING...</div>
+        <div id="zoneName" style="font-family:'Press Start 2P'; font-size:10px; color:white;">NOW SERVING...</div>
         <div style="display: flex; gap: 10px;">
-            <button class="btn-retro" onclick="toggleFullScreen()" style="background: #3EB489; color: white;">FULLSCREEN</button>
-            <button class="btn-retro" onclick="openAboutBlank()" style="background:var(--primary); color:white;">GHOST MODE</button>
-            <button class="btn-retro" onclick="closeGame()" style="background:#ff4444; color:white;">CLOSE</button>
+            <button class="btn-retro" onclick="fullscreenZone()" style="background: #3EB489; color: white;">FULLSCREEN</button>
+            <button class="btn-retro" onclick="closeZone()" style="background:#ff4444; color:white;">CLOSE</button>
         </div>
     </div>
-    <iframe id="game-frame" src="" style="width:100%; height:100%; border:none;"></iframe>
+    <iframe id="zoneFrame" src="" style="width:100%; height:100%; border:none;"></iframe>
 </div>
 
 <script>
-    // trending: true = Trending section | trending: false = All section
-    const DATABASE = [
-        { id: 1, name: "2048", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/1200px-2048_logo.svg.png", url: "https://play2048.co/", trending: false },
-        { id: 2, name: "TETRIS", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Tetris_Logotype.svg/1200px-Tetris_Logotype.svg.png", url: "https://tetris.com/play-tetris", trending: true },
-        { id: 3, name: "SNAKE", img: "https://img.icons8.com/color/200/snake.png", url: "https://www.google.com/logos/2010/pacman10-i.html", trending: false }
-    ];
-
+    const container = document.getElementById('container');
+    const trendingGrid = document.getElementById('trending-grid');
+    const zoneViewer = document.getElementById('drawer');
+    const zoneFrame = document.getElementById('zoneFrame');
+    
+    // UPDATED: No subfolders, looking in root directory
+    const zonesURL = "https://cdn.jsdelivr.net/gh/SnakierdoorCode/SodaShop@main/database.json";
+    const baseURL = "https://cdn.jsdelivr.net/gh/SnakierdoorCode/SodaShop@latest";
+    
+    let zones = [];
     let favs = JSON.parse(localStorage.getItem('ss_favs')) || [];
-    let currentUrl = "";
     let playCount = 0;
     let startTime = Date.now();
 
-    function render(data = DATABASE) {
-        const masterGrid = document.getElementById('master-grid');
-        const trendingGrid = document.getElementById('trending-grid');
-        masterGrid.innerHTML = ""; trendingGrid.innerHTML = "";
+    async function listZones() {
+        try {
+            const response = await fetch(zonesURL + "?t=" + Date.now());
+            if (!response.ok) throw new Error("HTTP " + response.status);
+            zones = await response.json();
+            displayZones(zones);
+        } catch (e) { console.error("Database error:", e); }
+    }
 
-        data.forEach(g => {
-            const isFav = favs.includes(g.id);
-            const card = document.createElement('div');
-            card.className = 'game-card';
-            card.onclick = () => play(g.url, g.name);
+    function displayZones(data) {
+        container.innerHTML = "";
+        trendingGrid.innerHTML = "";
+        
+        data.forEach(game => {
+            const isFav = favs.includes(game.id);
+            const card = document.createElement("div");
+            card.className = "game-card";
+            card.onclick = () => openZone(game);
+            
+            // Clean up placeholders to point to root
+            const imgPath = game.cover.replace("{COVER_URL}", baseURL).replace("/covers", "");
+            
             card.innerHTML = `
-                <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(event, ${g.id})">
+                <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(event, ${game.id})">
                     <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
                 </button>
-                <img src="${g.img}">
-                <div class="game-name">${g.name}</div>
+                <img src="${imgPath}" onerror="this.src='https://img.icons8.com/color/96/soda-can.png'">
+                <div class="game-name">${game.name}</div>
             `;
-            if(g.trending) trendingGrid.appendChild(card);
-            else masterGrid.appendChild(card);
+            
+            if (game.featured) trendingGrid.appendChild(card);
+            else container.appendChild(card);
         });
         document.getElementById('trending-section').style.display = trendingGrid.innerHTML === "" ? "none" : "block";
     }
 
-    function play(url, name) {
-        currentUrl = url;
+    function openZone(game) {
         playCount++;
         document.getElementById('stat-count').innerText = playCount;
-        document.getElementById('game-frame').src = url;
-        document.getElementById('active-title').innerText = "NOW SERVING: " + name;
-        document.getElementById('drawer').classList.add('active');
+        document.getElementById('zoneName').innerText = "NOW SERVING: " + game.name;
+        
+        // Remove "/games" from the URL path if it exists in JSON placeholders
+        let finalUrl = game.url.replace("{HTML_URL}", baseURL).replace("/games", "");
+        
+        if (game.url.startsWith("http") && !game.url.includes("{HTML_URL}")) {
+            window.open(game.url, "_blank");
+        } else {
+            zoneFrame.src = finalUrl;
+            zoneViewer.classList.add('active');
+        }
     }
 
-    function closeGame() {
-        document.getElementById('drawer').classList.remove('active');
-        setTimeout(() => { document.getElementById('game-frame').src = ""; }, 600);
+    function closeZone() {
+        zoneViewer.classList.remove('active');
+        setTimeout(() => { zoneFrame.src = ""; }, 600);
     }
 
-    function toggleFullScreen() {
-        const f = document.getElementById('game-frame');
-        if (f.requestFullscreen) f.requestFullscreen();
-        else if (f.webkitRequestFullscreen) f.webkitRequestFullscreen();
+    function filterZones() {
+        const query = document.getElementById('search').value.toLowerCase();
+        displayZones(zones.filter(z => z.name.toLowerCase().includes(query)));
     }
 
-    function searchGames() {
-        const term = document.getElementById('search').value.toLowerCase();
-        render(DATABASE.filter(g => g.name.toLowerCase().includes(term)));
-    }
-
+    function toggleSettings(s) { document.getElementById('settings-modal').style.display = s ? 'flex' : 'none'; }
+    function updateVar(p, v) { document.documentElement.style.setProperty(p, v); }
+    
     function applyPreset(val) {
         const themes = {
             cherry: { p: '#ff3e5e', b: '#1a1a1a' },
@@ -385,13 +251,7 @@
     function cloak(v) {
         const map = { 
             classroom: ["Classes", "https://ssl.gstatic.com/classroom/favicon.png"], 
-            clever: ["Clever | Portal", "https://assets.clever.com/launchpad/5450893a2e/favicon.ico"],
-            edpuzzle: ["Edpuzzle", "https://edpuzzle.com/favicon.ico"],
-            ixl: ["IXL | Dashboard", "https://www.ixl.com/favicon.ico"],
-            gmail: ["Inbox", "https://ssl.gstatic.com/ui/v1/icons/mail/images/favicon5.ico"],
-            docs: ["Google Docs", "https://ssl.gstatic.com/docs/documents/images/kix-favicon7.ico"],
-            slides: ["Google Slides", "https://ssl.gstatic.com/docs/presentations/images/favicon-5.ico"],
-            khan: ["Khan Academy", "https://www.khanacademy.org/favicon.ico"]
+            clever: ["Clever | Portal", "https://assets.clever.com/launchpad/5450893a2e/favicon.ico"]
         };
         if(v !== 'none' && map[v]) {
             document.title = map[v][0];
@@ -399,12 +259,25 @@
         }
     }
 
-    function openAboutBlank() {
+    function aboutBlank() {
         const win = window.open('about:blank', '_blank');
         const ifr = win.document.createElement('iframe');
         ifr.style = "width:100vw; height:100vh; border:none; position:fixed; top:0; left:0;";
-        ifr.src = currentUrl || window.location.href;
+        ifr.src = zoneFrame.src || window.location.href;
         win.document.body.appendChild(ifr);
+    }
+
+    function fullscreenZone() {
+        if (zoneFrame.requestFullscreen) zoneFrame.requestFullscreen();
+        else if (zoneFrame.webkitRequestFullscreen) zoneFrame.webkitRequestFullscreen();
+    }
+
+    function toggleFav(e, id) { 
+        e.stopPropagation(); 
+        const idx = favs.indexOf(id); 
+        idx > -1 ? favs.splice(idx, 1) : favs.push(id); 
+        localStorage.setItem('ss_favs', JSON.stringify(favs)); 
+        displayZones(zones); 
     }
 
     setInterval(() => {
@@ -414,16 +287,11 @@
         document.getElementById('stat-time').innerText = h + "h " + (m < 10 ? "0" + m : m) + "m";
     }, 10000);
 
-    function toggleSettings(s) { document.getElementById('settings-modal').style.display = s ? 'flex' : 'none'; }
-    function updateVar(p, v) { document.documentElement.style.setProperty(p, v); }
-    function applyCSS() { document.getElementById('custom-css-area').innerHTML = document.getElementById('css-box').value; }
-    function toggleFav(e, id) { e.stopPropagation(); const idx = favs.indexOf(id); idx > -1 ? favs.splice(idx, 1) : favs.push(id); localStorage.setItem('ss_favs', JSON.stringify(favs)); render(); }
-
     window.addEventListener('keydown', (e) => {
         if (e.key === '`') window.location.replace("https://classroom.google.com");
     });
 
-    render();
+    listZones();
 </script>
 </body>
 </html>
