@@ -161,7 +161,6 @@
     const zoneViewer = document.getElementById('drawer');
     const zoneFrame = document.getElementById('zoneFrame');
     
-    // UPDATED: No subfolders, looking in root directory
     const zonesURL = "https://cdn.jsdelivr.net/gh/SnakierdoorCode/SodaShop@main/database.json";
     const baseURL = "https://cdn.jsdelivr.net/gh/SnakierdoorCode/SodaShop@latest";
     
@@ -176,6 +175,15 @@
             if (!response.ok) throw new Error("HTTP " + response.status);
             zones = await response.json();
             displayZones(zones);
+
+            // URL PARAMETER CHECK (The ?id=0 trick)
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            if (gameId !== null) {
+                const target = zones.find(z => z.id == gameId);
+                if (target) openZone(target);
+            }
+
         } catch (e) { console.error("Database error:", e); }
     }
 
@@ -189,7 +197,6 @@
             card.className = "game-card";
             card.onclick = () => openZone(game);
             
-            // Clean up placeholders to point to root
             const imgPath = game.cover.replace("{COVER_URL}", baseURL).replace("/covers", "");
             
             card.innerHTML = `
@@ -211,9 +218,11 @@
         document.getElementById('stat-count').innerText = playCount;
         document.getElementById('zoneName').innerText = "NOW SERVING: " + game.name;
         
-        // Remove "/games" from the URL path if it exists in JSON placeholders
         let finalUrl = game.url.replace("{HTML_URL}", baseURL).replace("/games", "");
         
+        // Update URL address bar without refreshing
+        window.history.pushState({}, '', `?id=${game.id}`);
+
         if (game.url.startsWith("http") && !game.url.includes("{HTML_URL}")) {
             window.open(game.url, "_blank");
         } else {
@@ -224,6 +233,8 @@
 
     function closeZone() {
         zoneViewer.classList.remove('active');
+        // Remove the ?id= from the URL
+        window.history.pushState({}, '', window.location.pathname);
         setTimeout(() => { zoneFrame.src = ""; }, 600);
     }
 
